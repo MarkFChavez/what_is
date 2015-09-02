@@ -37,7 +37,7 @@ module WhatIs
     rescue NoApiKeyException => e
       no_api_key_exception_message
     rescue Exception => e
-      default_exception_message
+      e.message
     end
 
     def has_definition?
@@ -45,10 +45,6 @@ module WhatIs
     end
 
     private
-
-    def default_exception_message
-      "Oops! Something happened while defining this word."
-    end
 
     def no_api_key_exception_message
       "No api key provided."
