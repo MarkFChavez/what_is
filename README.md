@@ -2,6 +2,10 @@
 
 What the hell is this gem for? To put simply, this library enables us (developers) to define a given word. Think "dictionary". It uses the Merriam-Webster's API as the reference for giving the definitions.
 
+# Setup
+
+setup here
+
 ## Installation
 
 Add this line to your application's Gemfile:
