@@ -1,12 +1,22 @@
 require "what_is/version"
+require "what_is/configuration"
 require "net/http"
 require "uri"
 require "nokogiri"
 
 module WhatIs
   class Define
-    DICT_API_KEY = "ae396fba-2435-4197-b780-c4b5485fec22"
-    THES_API_KEY = "c80b99cc-421c-4f86-bc50-45ef40b371fe"
+    class << self
+      attr_writer :configuration
+    end
+
+    def self.configuration
+      @configuration ||= Configuration.new
+    end
+
+    def self.configure
+      yield(configuration)
+    end
 
     def initialize(word)
       @word = word.to_s
@@ -14,7 +24,7 @@ module WhatIs
     end
 
     def define!
-      thesaurus_endpoint = "http://www.dictionaryapi.com/api/v1/references/thesaurus/xml/#{@word}?key=#{THES_API_KEY}"
+      thesaurus_endpoint = "http://www.dictionaryapi.com/api/v1/references/thesaurus/xml/#{@word}?key=#{WhatIs.configuration.thesaurus_api_key}"
       uri = URI.parse(thesaurus_endpoint)
       response = Net::HTTP.get_response(uri)
       doc = Nokogiri::XML(response.body)
