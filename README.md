@@ -26,6 +26,15 @@ Or install it yourself as:
 
 ## Usage
 
+Configure your api keys first.
+
+    WhatIs.configure do |config|
+      config.thesaurus_api_key = "<api key here>"
+      config.dictionary_api_key = "<api key here>"
+    end
+
+Implementation.
+
     x = WhatIs::Define.new("<insert word to define>")
     x.go! # returns the meaning of the word
 
