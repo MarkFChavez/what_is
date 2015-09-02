@@ -37,7 +37,7 @@ module WhatIs
     rescue NoApiKeyException => e
       no_api_key_exception_message
     rescue Exception => e
-      e.message
+      default_exception_message
     end
 
     def has_definition?
@@ -46,8 +46,12 @@ module WhatIs
 
     private
 
+    def default_exception_message
+      "ERROR: Unable to define `#{@word}`"
+    end
+
     def no_api_key_exception_message
-      "No api key provided."
+      "ERROR: No api key provided."
     end
   end
 end
