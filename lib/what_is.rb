@@ -1,6 +1,7 @@
 require "what_is/version"
 require "net/http"
 require "uri"
+require "nokogiri"
 
 module WhatIs
   class Define
@@ -16,9 +17,10 @@ module WhatIs
       thesaurus_endpoint = "http://www.dictionaryapi.com/api/v1/references/thesaurus/xml/#{@word}?key=#{THES_API_KEY}"
       uri = URI.parse(thesaurus_endpoint)
       response = Net::HTTP.get_response(uri)
+      doc = Nokogiri::XML(response.body)
 
-      response.body
-    rescue
+      doc.xpath("//mc").text
+    rescue Exception => e
       default_exception_message
     end
 
@@ -29,7 +31,7 @@ module WhatIs
     private
 
     def default_exception_message
-      "Oops. Something happened while defining this word"
+      "Oops! Something happened while defining this word."
     end
   end
 end
