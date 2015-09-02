@@ -1,4 +1,4 @@
-# WhatIs
+# What Is
 
 What the hell is this gem for? To put simply, this library enables us (developers) to define a given word. Think "dictionary". It uses the Merriam-Webster's API as the reference for giving the definitions.
 
@@ -23,7 +23,7 @@ Or install it yourself as:
 
 ## Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/what_is/fork )
+1. Fork it ( http://github.com/<my-github-username>what_is/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
