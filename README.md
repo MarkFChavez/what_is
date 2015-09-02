@@ -1,6 +1,6 @@
 # WhatIs
 
-TODO: Write a gem description
+What the hell is this gem for? To put simply, this library enables us (developers) to define a given word. Think "dictionary". It uses the Merriam-Webster's API as the reference for giving the definitions.
 
 ## Installation
 
@@ -18,7 +18,8 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    x = WhatIs::Define.new("<insert word to define>")
+    x.go! # returns the meaning of the word
 
 ## Contributing
 
