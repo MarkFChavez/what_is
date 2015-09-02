@@ -1,5 +1,6 @@
 require "what_is/version"
 require "what_is/configuration"
+require "what_is/exceptions"
 require "net/http"
 require "uri"
 require "nokogiri"
@@ -25,7 +26,7 @@ module WhatIs
     end
 
     def define!
-      raise NoApiKeyException unless WhatIs.configuration.thesaurus_api_key
+      raise WhatIs::NoApiKeyException unless WhatIs.configuration.thesaurus_api_key
 
       thesaurus_endpoint = "http://www.dictionaryapi.com/api/v1/references/thesaurus/xml/#{@word}?key=#{WhatIs.configuration.thesaurus_api_key}"
       uri = URI.parse(thesaurus_endpoint)
