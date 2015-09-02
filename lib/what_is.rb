@@ -19,7 +19,7 @@ module WhatIs
       response = Net::HTTP.get_response(uri)
       doc = Nokogiri::XML(response.body)
 
-      doc.xpath("//mc").text
+      doc.xpath("//mc").first.text
     rescue Exception => e
       default_exception_message
     end
