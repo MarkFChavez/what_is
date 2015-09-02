@@ -8,7 +8,7 @@ module WhatIs
     THES_API_KEY = "c80b99cc-421c-4f86-bc50-45ef40b371fe"
 
     def initialize(word)
-      @word = word
+      @word = word.to_s
       @has_definition = false
     end
 
