@@ -25,12 +25,16 @@ module WhatIs
     end
 
     def define!
+      raise NoApiKeyException unless WhatIs.configuration.thesaurus_api_key
+
       thesaurus_endpoint = "http://www.dictionaryapi.com/api/v1/references/thesaurus/xml/#{@word}?key=#{WhatIs.configuration.thesaurus_api_key}"
       uri = URI.parse(thesaurus_endpoint)
       response = Net::HTTP.get_response(uri)
       doc = Nokogiri::XML(response.body)
 
       doc.xpath("//mc").first.text
+    rescue NoApiKeyException => e
+      no_api_key_exception_message
     rescue Exception => e
       default_exception_message
     end
@@ -43,6 +47,10 @@ module WhatIs
 
     def default_exception_message
       "Oops! Something happened while defining this word."
+    end
+
+    def no_api_key_exception_message
+      "No api key provided."
     end
   end
 end
