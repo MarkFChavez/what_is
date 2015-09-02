@@ -5,19 +5,20 @@ require "uri"
 require "nokogiri"
 
 module WhatIs
+
+  class << self
+    attr_writer :configuration
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure
+    yield(configuration)
+  end
+
   class Define
-    class << self
-      attr_writer :configuration
-    end
-
-    def self.configuration
-      @configuration ||= Configuration.new
-    end
-
-    def self.configure
-      yield(configuration)
-    end
-
     def initialize(word)
       @word = word.to_s
       @has_definition = false
