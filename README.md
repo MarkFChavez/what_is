@@ -4,8 +4,11 @@ What the hell is this gem for? To put simply, this library enables us (developer
 
 # Setup
 
-First, register an account on http://www.dictionaryapi.com/ and make sure you request an api key for 
+Register an account on http://www.dictionaryapi.com/ and make sure you request an api key for 
 Collegiate Dictionary and Collegiate Thesaurus. These are the two references that this library supports for now.
+
+After registration, you should already have two api keys; one for the dictionary and other is for the thesaurus 
+version.
 
 ## Installation
 
