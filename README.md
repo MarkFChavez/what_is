@@ -36,7 +36,7 @@ Configure your api keys first.
 Implementation.
 
     x = WhatIs::Define.new("<insert word to define>")
-    x.go! # returns the meaning of the word
+    x.define! # returns the meaning of the word
 
 ## Contributing
 
