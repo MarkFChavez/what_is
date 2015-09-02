@@ -18,10 +18,18 @@ module WhatIs
       response = Net::HTTP.get_response(uri)
 
       response.body
+    rescue
+      default_exception_message
     end
 
     def has_definition?
       @has_definition
+    end
+
+    private
+
+    def default_exception_message
+      "Oops. Something happened while defining this word"
     end
   end
 end
