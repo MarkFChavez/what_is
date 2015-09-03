@@ -35,7 +35,7 @@ Configure your api keys first.
 
 Implementation.
 
-    x = WhatIs::Define.new("<insert word to define>")
+    x = WhatIs::Define.new("<insert word to define>", <reference>) # where reference can be :thesaurus or :dictionary
     x.define! # returns the meaning of the word
 
 ## Contributing
