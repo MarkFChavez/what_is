@@ -2,6 +2,7 @@ require "what_is/version"
 require "what_is/configuration"
 require "what_is/exceptions"
 require "what_is/thesaurus"
+require "what_is/dictionary"
 
 module WhatIs
 
@@ -29,7 +30,7 @@ module WhatIs
       when :thesaurus
         WhatIs::Thesaurus.new(@word).define!
       when :dictionary
-
+        WhatIs::Dictionary.new(@word).define!
       else
         raise WhatIs::ReferenceUndefinedException
       end
