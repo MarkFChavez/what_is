@@ -1,9 +1,6 @@
 require "what_is/version"
 require "what_is/configuration"
 require "what_is/exceptions"
-require "net/http"
-require "uri"
-require "nokogiri"
 require "what_is/thesaurus"
 
 module WhatIs
@@ -27,7 +24,6 @@ module WhatIs
     end
 
     def define!
-      raise WhatIs::NoApiKeyException unless WhatIs.configuration.thesaurus_api_key
 
       case @reference
       when :thesaurus
@@ -46,10 +42,6 @@ module WhatIs
 
     def default_exception_message
       "ERROR: Unable to define `#{@word}`"
-    end
-
-    def no_api_key_exception_message
-      "ERROR: No api key provided."
     end
   end
 end
