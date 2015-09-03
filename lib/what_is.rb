@@ -4,6 +4,7 @@ require "what_is/exceptions"
 require "net/http"
 require "uri"
 require "nokogiri"
+require "what_is/thesaurus"
 
 module WhatIs
 
@@ -20,28 +21,25 @@ module WhatIs
   end
 
   class Define
-    def initialize(word)
+    def initialize(word, reference)
       @word = word.to_s
-      @has_definition = false
+      @reference = reference.to_sym
     end
 
     def define!
       raise WhatIs::NoApiKeyException unless WhatIs.configuration.thesaurus_api_key
 
-      thesaurus_endpoint = "http://www.dictionaryapi.com/api/v1/references/thesaurus/xml/#{@word}?key=#{WhatIs.configuration.thesaurus_api_key}"
-      uri = URI.parse(thesaurus_endpoint)
-      response = Net::HTTP.get_response(uri)
-      doc = Nokogiri::XML(response.body)
+      case @reference
+      when :thesaurus
+        WhatIs::Thesaurus.new(@word).define!
+      when :dictionary
 
-      doc.xpath("//mc").first.text
-    rescue NoApiKeyException => e
-      no_api_key_exception_message
+      else
+        raise WhatIs::ReferenceUndefinedException
+      end
+
     rescue Exception => e
       default_exception_message
-    end
-
-    def has_definition?
-      @has_definition
     end
 
     private
