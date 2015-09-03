@@ -15,8 +15,10 @@ module WhatIs
 
       uri = URI.parse(api_endpoint)
       response = Net::HTTP.get_response(uri)
+      doc = Nokogiri::XML(response.body)
 
-      response
+
+      doc.xpath("//dt").first.text
 
     rescue NoApiKeyException => e
       no_api_key_exception_message
